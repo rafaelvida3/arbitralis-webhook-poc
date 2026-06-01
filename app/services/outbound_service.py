@@ -8,6 +8,9 @@ async def send_outbound_message(
     customer_phone: str,
     message: str,
 ) -> None:
+    _ = customer_phone
+    _ = message
+    
     logger.info(
         "outbound_message_sent",
         extra={
