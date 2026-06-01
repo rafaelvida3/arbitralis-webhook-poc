@@ -2,7 +2,7 @@
 python_version = "3.13"
 strict = true
 exclude = [
-    ".venv",
+    "^\\.venv/",
 ]
 warn_unreachable = true
 pretty = true
