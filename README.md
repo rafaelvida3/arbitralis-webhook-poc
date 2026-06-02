@@ -39,7 +39,7 @@ Background worker
     -> envia mensagens com falha para uma Dead Letter Queue em memória
 ```
 
-## Decisões técnicas
+## ADR - Decisões de arquitetura
 
 ### Webhook com resposta rápida
 
@@ -94,7 +94,7 @@ O projeto possui validações automatizadas com:
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/arbitralis-webhook-poc.git
+git clone https://github.com/rafaelvida3/arbitralis-webhook-poc
 cd arbitralis-webhook-poc
 ```
 
@@ -196,6 +196,7 @@ pytest
 ## Como rodar as validações de qualidade
 
 ```bash
+ruff format --check .
 ruff check .
 mypy .
 pytest
@@ -206,6 +207,7 @@ pytest
 O projeto possui um workflow de GitHub Actions que executa automaticamente:
 
 ```text
+ruff format --check .
 ruff check .
 mypy .
 pytest

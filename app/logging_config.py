@@ -42,7 +42,10 @@ class JsonFormatter(logging.Formatter):
             if key not in DEFAULT_LOG_FIELDS:
                 log[key] = value
 
-        return json.dumps(log)
+        if record.exc_info is not None:
+            log["exception"] = self.formatException(record.exc_info)
+
+        return json.dumps(log, default=str)
 
 
 def configure_logging() -> None:

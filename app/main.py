@@ -1,5 +1,6 @@
+import asyncio
 from collections.abc import AsyncIterator
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, suppress
 
 from fastapi import FastAPI, status
 
@@ -11,11 +12,17 @@ from app.worker import start_worker
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    _ = app
+
     worker_task = start_worker()
 
     yield
 
     worker_task.cancel()
+
+    with suppress(asyncio.CancelledError):
+        await worker_task
+
 
 configure_logging()
 
